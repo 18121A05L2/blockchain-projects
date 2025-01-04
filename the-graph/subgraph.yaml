@@ -1,0 +1,32 @@
+specVersion: 1.0.0
+indexerHints:
+  prune: auto
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: Twitter
+    network: sepolia
+    source:
+      address: "0xD9792856b09A09FA1bce816129714CdE840Ddd2f"
+      abi: Twitter
+      startBlock: 6302702
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - Approval
+        - Transfer
+        - Tweet
+      abis:
+        - name: Twitter
+          file: ./abis/Twitter.json
+      eventHandlers:
+        - event: Approval(indexed address,indexed address,uint256)
+          handler: handleApproval
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleTransfer
+        - event: Tweet(indexed address,string)
+          handler: handleTweet
+      file: ./src/twitter.ts

@@ -1,0 +1,8 @@
+{
+  "sepolia": {
+    "Twitter": {
+      "address": "0xD9792856b09A09FA1bce816129714CdE840Ddd2f",
+      "startBlock": 6302702
+    }
+  }
+}
