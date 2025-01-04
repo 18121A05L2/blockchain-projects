@@ -1,3 +1,9 @@
 [submodule "security/lib/forge-std"]
 	path = security/lib/forge-std
 	url = https://github.com/foundry-rs/forge-std
+[submodule "security/basic-solc-project/lib/forge-std"]
+	path = security/basic-solc-project/lib/forge-std
+	url = https://github.com/foundry-rs/forge-std
+[submodule "assembly-horse-store/lib/forge-std"]
+	path = assembly-horse-store/lib/forge-std
+	url = https://github.com/foundry-rs/forge-std
