@@ -10,3 +10,9 @@
 [submodule "cyfrin/assembly-horse-store/lib/foundry-huff"]
 	path = cyfrin/assembly-horse-store/lib/foundry-huff
 	url = https://github.com/huff-language/foundry-huff
+[submodule "cyfrin/assembly-horse-store/lib/openzeppelin-contracts"]
+	path = cyfrin/assembly-horse-store/lib/openzeppelin-contracts
+	url = https://github.com/OpenZeppelin/openzeppelin-contracts
+[submodule "cyfrin/assembly-horse-store/lib/huffmate"]
+	path = cyfrin/assembly-horse-store/lib/huffmate
+	url = https://github.com/huff-language/huffmate
