@@ -40,4 +40,5 @@
 }
 #define macro GET_NO_OF_HORSES() = takes(0) returns(0) {
     [NUM_OF_HORSES_STORAGE_SLOT] sload 0x00 mstore 0x20 0x00 return
+    // return takes 0x00 as first parameter as the starting from 0 th byte in memory with size as ox20
 }

@@ -1,0 +1,106 @@
+// Import
+#include "../../lib/huffmate/src/data-structures/Hashmap.huff"
+// #include "../../lib/huffmate/src/tokens/ERC721.huff"
+
+// Interfaces
+#define function mintHorse()  nonpayable returns()
+#define function feedhorse(uint256) nonpayable returns()
+#define function isHappyHorse(uint256) view returns(bool)
+#define function horseIdToFedTimeStamp(uint256) view returns(uint256) // public mapping function
+#define function HORSE_HAPPY_IF_FED_WITHIN() view returns(uint256)
+#define constant horseIdToFedTimeStampLocation = FREE_STORAGE_POINTER() // slot - 0x01 
+#define constant HORSE_HAPPY_IF_FED_WITHIN_CONST = 0x0000000000000000000000000000000000000000000000000000000000015180
+
+#define macro MAIN() = takes(0) returns(0) {
+    // load call data
+    0x00 calldataload 0xE0 shr    // [func_selector]
+
+    // matching function selectos
+    dup1 __FUNC_SIG(mintHorse) eq jumpMintHorse jumpi
+    dup1 __FUNC_SIG(feedhorse) eq jumpFeedHorse jumpi
+    dup1 __FUNC_SIG(isHappyHorse) eq jumpIsHappyHorse jumpi
+    dup1 __FUNC_SIG(horseIdToFedTimeStamp) eq jumpHorseIdFedTimeStamp jumpi
+    dup1 __FUNC_SIG(HORSE_HAPPY_IF_FED_WITHIN) eq jumpHorseHappyIfFedWithIn jumpi
+
+
+    // Jump destinations 
+    jumpMintHorse:
+            MINT_HORSE()
+    jumpFeedHorse:
+            FEED_HORSE()
+    jumpIsHappyHorse:
+            IS_HAPPY_HORSE()
+    jumpHorseIdFedTimeStamp:
+            HORSE_ID_FED_TIME_STAMP()
+    jumpHorseHappyIfFedWithIn:
+            HORSE_HAPPY_IF_FED_WITHIN_FUN()
+
+
+}
+
+#define macro MINT_HORSE() = takes(0) returns(0) {
+
+}
+
+#define macro FEED_HORSE() = takes(0) returns(0) {
+    // load horseId from call data 
+    // 0x00 calldataload 0x20 shl    // [horseId]
+    timestamp 0x04 calldataload      // [horseId,timestamp]
+    [horseIdToFedTimeStampLocation]  // [location(slot) , horseId(key) , timestamp]
+    STORE_ELEMENT_FROM_KEYS(0x00)
+    stop
+
+    // to get the mapping key location - keccakc256(abi.encode(key,slot))
+    // TODO : decode STORE_ELEMENT_FROM_KEYS and write raw optcodes
+
+    // // Input stack: [slot, key]
+    // // Load the data into memory.
+    // 0x00 0x20 add  // [0+32, slot, key]
+    // mstore         // stack : [key]         // mem : [slot]
+    // 0x00           // [0, key]
+    // mstore              // []
+
+    // // Hash the data, generating a slot.
+    // 0x40        // [64]
+    // 0x00  // [<mem_ptr>, 64]
+    // sha3        // [slot]
+
+}
+
+#define macro IS_HAPPY_HORSE() = takes(0) returns(0) {
+        0x04 calldataload     // [horseId]
+        [horseIdToFedTimeStampLocation]  // [slot , horseId]
+        LOAD_ELEMENT_FROM_KEYS(0x00)     // [horseFedIdTimestamp]
+        timestamp                        // [timestamp,horseFedIdTimestamp]
+        dup2 dup2                        // [timestamp,horseFedIdTimestamp,timestamp,horseFedIdTimestamp]
+        sub                              // [timestamp - horseFedIdTimestamp,timestamp,horseFedIdTimestamp]
+        [HORSE_HAPPY_IF_FED_WITHIN_CONST] // [one_day , timestamp - horseFedIdTimestamp,timestamp,horseFedIdTimestamp ]
+        swap1
+        gt return_if_true   jumpi        // [ifHorseIFedWithInOneDay , timestamp , horseFedIdTimestamp]
+        eq return_if_equals_true jump
+
+        return_if_true: 
+              0x00 mstore
+              0x20 0x00 return
+
+        return_if_equals_true:
+                0x00 mstore
+                0x20 0x00 return
+                
+}
+
+#define macro HORSE_ID_FED_TIME_STAMP() = takes(0) returns(0) {
+    0x04 calldataload     // [horseId]
+    [horseIdToFedTimeStampLocation]  // [slot , key]
+    LOAD_ELEMENT_FROM_KEYS(0x00)     // [timestamp]
+
+    0x00 mstore                     // []             // MEM : [timestamp]
+    0x20 0x00 return  // starting from 0th byte with 32 bytes as length
+}
+
+#define macro HORSE_HAPPY_IF_FED_WITHIN_FUN() = takes(0) returns(0) {
+        [HORSE_HAPPY_IF_FED_WITHIN_CONST]
+        0x00 mstore
+        0x20 0x00 return
+
+}
