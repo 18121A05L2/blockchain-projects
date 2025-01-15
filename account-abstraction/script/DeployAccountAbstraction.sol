@@ -11,9 +11,9 @@ contract DeployAccountAbstraction is Script {
 
     function run() public returns (AccountAbstraction accountAbstraction, HelperConfig helperConfig) {
         helperConfig = new HelperConfig();
-        activeNetworkConfig = helperConfig.getActiveNetworkConfig();
-        vm.startBroadcast();
-        accountAbstraction = new AccountAbstraction(activeNetworkConfig.entryPoint);
+        (address account, address entryPoint,) = helperConfig.activeNetworkConfig();
+        vm.startBroadcast(account);
+        accountAbstraction = new AccountAbstraction(entryPoint);
         vm.stopBroadcast();
     }
 }
