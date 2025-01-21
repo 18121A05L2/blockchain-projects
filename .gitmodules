@@ -31,3 +31,21 @@
 [submodule "zksync-sepolia-deployment/lib/forge-std"]
 	path = zksync-sepolia-deployment/lib/forge-std
 	url = https://github.com/foundry-rs/forge-std
+[submodule "cross-chain-rebase-token/lib/forge-std"]
+	path = cross-chain-rebase-token/lib/forge-std
+	url = https://github.com/foundry-rs/forge-std
+[submodule "cross-chain-rebase-token/lib/openzeppelin-contracts"]
+	path = cross-chain-rebase-token/lib/openzeppelin-contracts
+	url = https://github.com/openzeppelin/openzeppelin-contracts
+[submodule "soldeer/lib/forge-std"]
+	path = soldeer/lib/forge-std
+	url = https://github.com/foundry-rs/forge-std
+[submodule "cross-chain-rebase-token/lib/ccip"]
+	path = cross-chain-rebase-token/lib/ccip
+	url = https://github.com/smartcontractkit/ccip
+[submodule "cross-chain-rebase-token/lib/ccip.git"]
+	path = cross-chain-rebase-token/lib/ccip.git
+	url = https://github.com/smartcontractkit/ccip.git
+[submodule "cross-chain-rebase-token/lib/chainlink-local"]
+	path = cross-chain-rebase-token/lib/chainlink-local
+	url = https://github.com/smartcontractkit/chainlink-local
