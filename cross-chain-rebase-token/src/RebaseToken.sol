@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
+// https://github.com/Cyfrin/foundry-cross-chain-rebase-token-cu
 
 import {ERC20} from "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import {Ownable} from "@openzeppelin/contracts/access/Ownable.sol";
@@ -17,6 +18,7 @@ contract RebaseToken is ERC20, Ownable, AccessControl {
 
     uint256 private constant PRECESION_FACTOR = 1e18;
     bytes32 private constant MINT_AND_BURN_ROLE = keccak256("MINT_AND_BURN_ROLE");
+    bytes32 private constant ADMIN_ROLE = keccak256("ADMIN_ROLE");
     // This interest rate is per second
     uint256 private s_intrestRate = 5e10;
     mapping(address => uint256) private s_userIntrestRate;
@@ -24,7 +26,11 @@ contract RebaseToken is ERC20, Ownable, AccessControl {
 
     event InterestRateUpdated(uint256 oldInterestRate, uint256 newInterestRate);
 
-    constructor() ERC20("RebaseToken", "RBT") Ownable(msg.sender) {}
+    constructor() ERC20("RebaseToken", "RBT") Ownable(msg.sender) {
+        // TODO : need to check how to use these fully
+        _grantRole(ADMIN_ROLE, msg.sender);
+        _setRoleAdmin(MINT_AND_BURN_ROLE, ADMIN_ROLE);
+    }
 
     function grantMintAndBurnRole(address account) public onlyOwner {
         grantRole(MINT_AND_BURN_ROLE, account);
