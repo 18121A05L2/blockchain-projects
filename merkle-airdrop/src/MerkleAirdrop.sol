@@ -13,16 +13,14 @@ contract MerkleAirdrop {
     error MerkleAirdrop_invalidProof();
     error MerkleAirdrop_userAlreadyClaimed();
 
-    address private immutable i_airDropToken;
     bytes32 private immutable i_merkleRoot;
     IERC20 private airdropToken;
 
     mapping(address => bool) public userClaimStatus;
 
-    constructor(address _airdropToken, bytes32 _merkleRoot) {
-        i_airDropToken = _airdropToken;
+    constructor(IERC20 _airdropToken, bytes32 _merkleRoot) {
         i_merkleRoot = _merkleRoot;
-        airdropToken = IERC20(_airdropToken);
+        airdropToken = _airdropToken;
     }
 
     function claim(address account, uint256 amount, bytes32[] calldata _merkleProof) external {
