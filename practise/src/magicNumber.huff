@@ -1,0 +1,20 @@
+
+#define function whatIsTheMeaningOfLife() external pure return(bytes32);
+
+#define macro MAIN() = takes(0) returns(0) {
+
+    //   // extracting the function selector
+    // 0x00 calldataload 0xE0 shr 
+
+    // __FUNC_SIG(whatIsTheMeaningOfLife) eq realFunction jumpi
+
+    // realFunction:
+    //     whatIsTheMeaningOfLife()
+
+
+}
+
+#define macro whatIsTheMeaningOfLife = takes(0) returns(0) {
+
+    
+}

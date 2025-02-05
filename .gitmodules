@@ -61,3 +61,9 @@
 [submodule "practise/lib/forge-std"]
 	path = practise/lib/forge-std
 	url = https://github.com/foundry-rs/forge-std.git
+[submodule "practise/dependencies/openzeppelin-contracts"]
+	path = practise/dependencies/openzeppelin-contracts
+	url = https://github.com/OpenZeppelin/openzeppelin-contracts
+[submodule "practise/dependencies/foundry-huff"]
+	path = practise/dependencies/foundry-huff
+	url = https://github.com/huff-language/foundry-huff

@@ -5,5 +5,10 @@ libs = ["lib", "dependencies"]
 
 [dependencies]
 forge-std = "1.9.5"
+remappings = [
+    "@openzeppelin/contracts/=lib/openzeppelin-contracts/contracts/",
+    # "@openzeppelin/contracts/=lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/",
+    "@chainlink/contracts/=lib/chainlink-brownie-contracts/contracts/",
+]
 
 # See more config options https://github.com/foundry-rs/foundry/blob/master/crates/config/README.md#all-options

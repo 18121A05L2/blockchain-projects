@@ -1,6 +1,9 @@
 -include .env
 
-.PHONY : deploy-hack execute deploy-original
+.PHONY : deploy-hack execute deploy-original install
+
+install:
+	forge install https://github.com/huff-language/foundry-huff --no-commit
 
 deploy-hack:
 	forge create  --private-key ${REAL_ACCOUNT_PRIVATE_KEY}  --broadcast --rpc-url ${RPC_ETH_SEPOLIA} src/GateKeeperOne.sol:BreakGateKeeperOne --constructor-args 0xAd13c8e9cE58dA83833Aa8deC9B829A539E5B519 --etherscan-api-key ${ETHER_SCAN_API}
