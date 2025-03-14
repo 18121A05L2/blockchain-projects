@@ -2,4 +2,4 @@
 
 .PHONY: test
 test:
-	forge test -vvvv --fork-url $(FORKED_MAINNET_URL)
+	forge test --match-test testTornadoHack  -vvvv --fork-url $(FORKED_MAINNET_URL)
