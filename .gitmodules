@@ -73,3 +73,6 @@
 [submodule "examples/lib/openzeppelin-contracts"]
 	path = examples/lib/openzeppelin-contracts
 	url = https://github.com/OpenZeppelin/openzeppelin-contracts
+[submodule "smartEOA/lib/forge-std"]
+	path = smartEOA/lib/forge-std
+	url = https://github.com/foundry-rs/forge-std
