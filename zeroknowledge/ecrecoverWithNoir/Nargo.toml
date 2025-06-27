@@ -1,0 +1,7 @@
+[package]
+name = "ecrecoverWithNoir"
+type = "bin"
+authors = ["LakshmiSanikommu"]
+
+[dependencies]
+ecrecover = { tag = "v1.0.0", git = "https://github.com/colinnielsen/ecrecover-noir" }
