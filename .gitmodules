@@ -76,3 +76,9 @@
 [submodule "smartEOA/lib/forge-std"]
 	path = smartEOA/lib/forge-std
 	url = https://github.com/foundry-rs/forge-std
+[submodule "zeroknowledge/panagram-fullstack/lib/forge-std"]
+	path = zeroknowledge/panagram-fullstack/lib/forge-std
+	url = https://github.com/foundry-rs/forge-std
+[submodule "zeroknowledge/panagram-fullstack/contracts/lib/forge-std"]
+	path = zeroknowledge/panagram-fullstack/contracts/lib/forge-std
+	url = https://github.com/foundry-rs/forge-std
